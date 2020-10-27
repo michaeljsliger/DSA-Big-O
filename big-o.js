@@ -76,19 +76,39 @@ iter O(n)
 // only one move per turn
 // disc move must be placed on empty rod, or on a disc bigger than the current
 // returning how many moves it takes to finish
-function towerOfHanoi(h, from, aux, to, count = 0) {
-    if (h === 1) {
-        console.log(`${h}:: ${from} to ${to}`);
-    } else {
-        towerOfHanoi(h - 1, from, to, aux);
+function towerOfHanoi(h, from, aux, to, count) {
+  if (h === 1) {
+    console.log(`${h}:: ${from} to ${to}`);
+  } else {
+    towerOfHanoi(h - 1, from, to, aux);
         
-        console.log(`${h}:: ${from} to ${to}`);
+    console.log(`${h}:: ${from} to ${to}`);
     
-        towerOfHanoi(h - 1, aux, from, to);
+    towerOfHanoi(h - 1, aux, from, to);
+  }
+  return;
+}
+// console.log(towerOfHanoi(3, 'A', 'B', 'C'));
+
+function towerofHanoiMoves() {
+  let count = 0;
+  function towerOfHanoi2(h, from, aux, to) {
+    if (h === 1) {
+      console.log(`${h}:: ${from} to ${to}`);
+      count++;
+    } else {
+      towerOfHanoi2(h - 1, from, to, aux);
+      // console.log(`${h}:: ${from} to ${to}`);
+      towerOfHanoi2(1, from, aux, to);
+      towerOfHanoi2(h - 1, aux, from, to);
     }
     return;
+  }
+  console.log(towerOfHanoi2(5, 'A', 'B', 'C'));
+  console.log(count);
 }
-console.log(towerOfHanoi(3, 'A', 'B', 'C'));
+console.log(towerofHanoiMoves());
+
 // stack of height 1
 // one move
 
